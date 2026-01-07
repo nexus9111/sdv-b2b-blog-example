@@ -1,0 +1,128 @@
+.article-card {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0;
+  border: 1px solid var(--border-color);
+  margin-bottom: 80px;
+  background: var(--bg-primary);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+}
+
+.article-card.layout-left {
+  grid-template-areas:
+    "img img img img img img img content content content content content";
+}
+
+.article-card.layout-right {
+  grid-template-areas:
+    "content content content content content content img img img img img img";
+}
+
+.article-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.layout-left .article-image {
+  grid-area: img;
+  border-right: 1px solid var(--border-color);
+}
+
+.layout-right .article-image {
+  grid-area: img;
+  border-left: 1px solid var(--border-color);
+}
+
+.article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article-content {
+  grid-area: content;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-meta {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.article-author {
+  color: var(--accent-color);
+}
+
+.article-date {
+  color: var(--text-secondary);
+}
+
+.article-header {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 30px 0;
+  color: var(--text-primary);
+}
+
+.article-body {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .article-card.layout-left,
+  .article-card.layout-right {
+    grid-template-areas:
+      "img img img img img img img img img img img img"
+      "content content content content content content content content content content content content";
+  }
+
+  .layout-left .article-image,
+  .layout-right .article-image {
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .article-content {
+    padding: 40px;
+  }
+
+  .article-header {
+    font-size: clamp(28px, 5vw, 42px);
+  }
+}
+
+@media (max-width: 640px) {
+  .article-content {
+    padding: 30px;
+  }
+
+  .article-meta {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .article-body {
+    font-size: 16px;
+  }
+}
